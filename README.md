@@ -18,4 +18,4 @@ This repo consists of two projects. [EyeGestureStub](EyeGestureStub) is a librar
 [Apache Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)
 
 ### Acknowledgements
-Refer [winky](https://github.com/kaze0/winky) project to learn how to receive the result of eye gesture. Thank you for great work!
+Refered [winky](https://github.com/kaze0/winky) project to learn how to receive the result of eye gesture. Thank you for the great work! Of course, great thank you for Google Glass's team!
