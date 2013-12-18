@@ -12,7 +12,7 @@ Demo app for Google Glass's eye gesture detector
 You might need `adb` to install it.
 
 ### Source Code
-This repo consists of two projects. `EyeGestureStub` is a library project for stubbing Google Glass's core framework `EyeGestureDemoApp` is an actual app.
+This repo consists of two projects. [EyeGestureStub](EyeGestureStub) is a library project for stubbing Google Glass's core framework [EyeGestureDemoApp](EyeGestureDemoApp) is an actual app.
 
 ### License
 [Apache Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)
