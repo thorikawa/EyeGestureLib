@@ -1,7 +1,7 @@
 GlassEyeGestureDemo
 ===================
 
-Demo app for Google Glass's eye gesture detector. Confirmed this project works on XE12.
+Demo app for Google Glass's eye gesture detector. This app is capable of detecting "Wink" gesture or "Double blink" gesture. Confirmed this app works on XE12.
 
 <img src="http://thorikawa.github.io/GlassEyeGestureDemo/img/eyegesture1.png" width="480" />
 <img src="http://thorikawa.github.io/GlassEyeGestureDemo/img/eyegesture2.png" width="480" />
