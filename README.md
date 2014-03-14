@@ -14,6 +14,11 @@ You might need `adb` to install it.
 ### Source Code
 This repo consists of two projects. [EyeGestureStub](EyeGestureStub) is a library project for stubbing Google Glass's core framework [EyeGestureDemoApp](EyeGestureDemoApp) is an actual app.
 
+### How it works
+EyeGesture and EyeGestureManager included in this project are just stubs, but once apk file is installed to Google Glass, it uses actual library included in Glass itself.
+
+If you wanna use eye gesture in your own application, you'd better to use EyeGestureStub project as it is. If you want to include those classes in your project, please use EyeGesture and EyeGestureManager class from this project with the SAME package name (com.google.android.glass.eye) and class name.
+
 ### License
 [Apache Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)
 
