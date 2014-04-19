@@ -7,7 +7,7 @@ Demo app for Google Glass's eye gesture detector. This app is capable of detecti
 <img src="http://thorikawa.github.io/GlassEyeGestureDemo/img/eyegesture2.png" width="480" />
 
 ### Download
-[v1.0 apk file](https://github.com/thorikawa/GlassEyeGestureDemo/releases/download/v1.0/EyeGestureDemo-debug.apk)
+[v1.1 apk file](https://github.com/thorikawa/GlassEyeGestureDemo/releases/download/v1.1/EyeGestureDemo-debug-1.1.apk)
 
 You might need `adb` to install it.
 
