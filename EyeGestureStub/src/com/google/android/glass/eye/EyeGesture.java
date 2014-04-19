@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public enum EyeGesture implements Parcelable {
-    DOFF, DON, DOUBLE_BLINK, DOUBLE_WINK, WINK;
+    BLINK, DOFF, DON, DOUBLE_BLINK, DOUBLE_WINK, LOOK_AT_SCREEN, LOOK_AWAY_FROM_SCREEN, WINK;
 
     public int getId() {
         return -1;

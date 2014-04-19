@@ -1,10 +1,7 @@
 package com.polysfactory.eyegesturedemo;
 
 import android.app.Activity;
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,19 +11,24 @@ import android.widget.TextView;
 
 import com.google.android.glass.eye.EyeGesture;
 import com.google.android.glass.eye.EyeGestureManager;
+import com.google.android.glass.eye.EyeGestureManager.Listener;
 import com.google.android.glass.media.Sounds;
 
 public class MainActivity extends Activity {
 
     private static final String TAG = "EyeGestureDemo";
 
-    private EyeGestureReceiver mReceiver;
-
     private AudioManager mAudioManager;
 
-    private EyeGestureManager mEyeGestureManager;
-
     private TextView mTextView;
+
+    private EyeGestureManager mEyeGestureManager;
+    private EyeGestureListener mEyeGestureListener;
+
+    // private EyeGesture target1 = EyeGesture.DON;
+    // private EyeGesture target2 = EyeGesture.DOFF;
+    private EyeGesture target1 = EyeGesture.WINK;
+    private EyeGesture target2 = EyeGesture.DOUBLE_BLINK;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,49 +43,58 @@ public class MainActivity extends Activity {
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
         mEyeGestureManager = EyeGestureManager.from(this);
+        mEyeGestureListener = new EyeGestureListener();
 
-        mReceiver = new EyeGestureReceiver();
+        // print out each eye gesture is supported or not
+        for (EyeGesture eg : EyeGesture.values()) {
+            boolean supported = mEyeGestureManager.isSupported(eg);
+            Log.d(TAG, eg.name() + ":" + supported);
+        }
     }
 
     @Override
     protected void onStart() {
         super.onStart();
 
-        mEyeGestureManager.stopDetector(EyeGesture.DOUBLE_BLINK);
-        mEyeGestureManager.stopDetector(EyeGesture.WINK);
-        mEyeGestureManager.enableDetectorPersistently(EyeGesture.DOUBLE_BLINK, true);
-        mEyeGestureManager.enableDetectorPersistently(EyeGesture.WINK, true);
+        mEyeGestureManager.stopDetector(target1);
+        mEyeGestureManager.stopDetector(target2);
 
-        IntentFilter filter = new IntentFilter("com.google.glass.action.EYE_GESTURE");
-        filter.setPriority(2000);
-        registerReceiver(mReceiver, filter);
+        mEyeGestureManager.enableDetectorPersistently(target1, true);
+        mEyeGestureManager.enableDetectorPersistently(target2, true);
+
+        mEyeGestureManager.register(target1, mEyeGestureListener);
+        mEyeGestureManager.register(target2, mEyeGestureListener);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
 
-        mEyeGestureManager.stopDetector(EyeGesture.DOUBLE_BLINK);
-        mEyeGestureManager.stopDetector(EyeGesture.WINK);
+        mEyeGestureManager.unregister(target1, mEyeGestureListener);
+        mEyeGestureManager.unregister(target2, mEyeGestureListener);
 
-        unregisterReceiver(mReceiver);
+        mEyeGestureManager.stopDetector(target1);
+        mEyeGestureManager.stopDetector(target2);
     }
 
-    class EyeGestureReceiver extends BroadcastReceiver {
+    private class EyeGestureListener implements Listener {
 
         @Override
-        public void onReceive(Context context, Intent intent) {
-            mAudioManager.playSoundEffect(Sounds.SUCCESS);
-            Bundle extras = intent.getExtras();
+        public void onEnableStateChange(EyeGesture eyeGesture, boolean paramBoolean) {
+            Log.i(TAG, eyeGesture + " state changed:" + paramBoolean);
+        }
 
-            String eyeGesture = extras.getString("gesture");
-            boolean screenOff = extras.getBoolean("screen_off");
-
-            Log.d(TAG, eyeGesture + " is detected");
-
-            mTextView.setText("Detected " + eyeGesture + "!");
-
-            abortBroadcast();
+        @Override
+        public void onDetected(final EyeGesture eyeGesture) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    mAudioManager.playSoundEffect(Sounds.SUCCESS);
+                    Log.i(TAG, eyeGesture + " is detected");
+                    mTextView.setText("Detected " + eyeGesture + "!");
+                }
+            });
         }
     }
+
 }
