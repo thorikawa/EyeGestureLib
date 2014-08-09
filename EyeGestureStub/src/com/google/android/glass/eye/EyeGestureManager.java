@@ -29,14 +29,6 @@ public class EyeGestureManager {
         return false;
     }
 
-    public boolean enableDetectorPersistently(EyeGesture paramEyeGesture, boolean paramBoolean) {
-        return false;
-    }
-
-    public boolean enableDetectorPersistently(EyeGesture paramEyeGesture, boolean paramBoolean1, boolean paramBoolean2) {
-        return false;
-    }
-
     public void enableGazeService(boolean paramBoolean) {
     }
 
@@ -44,18 +36,7 @@ public class EyeGestureManager {
         return false;
     }
 
-    public void forceGlasshubResetHack() {
-    }
-
     public boolean isCalibrationComplete(EyeGesture paramEyeGesture) {
-        return false;
-    }
-
-    public boolean isDetectorPersistentlyEnabled(EyeGesture paramEyeGesture) {
-        return false;
-    }
-
-    public boolean isDetectorRunning(EyeGesture paramEyeGesture) {
         return false;
     }
 
@@ -84,18 +65,6 @@ public class EyeGestureManager {
     }
 
     public boolean startCalibrationInterval(EyeGesture paramEyeGesture) {
-        return false;
-    }
-
-    public boolean startDetector(EyeGesture paramEyeGesture, boolean paramBoolean) {
-        return false;
-    }
-
-    public boolean startDetector(EyeGesture paramEyeGesture, boolean paramBoolean, int paramInt) {
-        return false;
-    }
-
-    public boolean stopDetector(EyeGesture paramEyeGesture) {
         return false;
     }
 
