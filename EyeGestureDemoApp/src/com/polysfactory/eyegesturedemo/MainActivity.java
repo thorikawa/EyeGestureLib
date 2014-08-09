@@ -55,13 +55,6 @@ public class MainActivity extends Activity {
     @Override
     protected void onStart() {
         super.onStart();
-
-        mEyeGestureManager.stopDetector(target1);
-        mEyeGestureManager.stopDetector(target2);
-
-        mEyeGestureManager.enableDetectorPersistently(target1, true);
-        mEyeGestureManager.enableDetectorPersistently(target2, true);
-
         mEyeGestureManager.register(target1, mEyeGestureListener);
         mEyeGestureManager.register(target2, mEyeGestureListener);
     }
@@ -69,12 +62,8 @@ public class MainActivity extends Activity {
     @Override
     protected void onStop() {
         super.onStop();
-
         mEyeGestureManager.unregister(target1, mEyeGestureListener);
         mEyeGestureManager.unregister(target2, mEyeGestureListener);
-
-        mEyeGestureManager.stopDetector(target1);
-        mEyeGestureManager.stopDetector(target2);
     }
 
     private class EyeGestureListener implements Listener {
